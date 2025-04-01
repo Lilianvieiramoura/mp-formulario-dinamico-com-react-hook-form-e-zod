@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { EyeOffIcon } from 'lucide-react';
 import { useHookFormMask } from 'use-mask-input';
 import { FieldValues, useForm} from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
 
 export default function Form() {
 
@@ -50,11 +51,12 @@ export default function Form() {
           })} />
         {/* Sugestão de exibição de erro de validação */}
 
-        {errors.name && (
-          <p className="text-xs text-red-400 mt-1">{errors.name?.message as string}</p>
-        )}  
+          <p className="text-xs text-red-400 mt-1">
+            <ErrorMessage errors={errors} name="name" />
+          </p>
             
       </div>
+
       <div className="mb-4">
         <label htmlFor="email">E-mail</label>
 
@@ -69,9 +71,9 @@ export default function Form() {
           }
           )}/>
 
-          {errors.email && (
-            <p className="text-xs text-red-400 mt-1">{errors.email?.message as string}</p>
-          )}
+          <p className="text-xs text-red-400 mt-1">
+            <ErrorMessage errors={errors} name="email" />
+          </p>
 
       </div>
       <div className="mb-4">
@@ -88,9 +90,9 @@ export default function Form() {
             })}
             />
 
-          {errors.password && (
-            <p className="text-xs text-red-400 mt-1">{errors.password?.message as string}</p>
-          )}
+          <p className="text-xs text-red-400 mt-1">
+            <ErrorMessage errors={errors} name="password" />
+          </p>  
 
           <span className="absolute right-3 top-3">
             <button type='button' onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
@@ -107,6 +109,7 @@ export default function Form() {
           </span>
         </div>
       </div>
+
       <div className="mb-4">
         <label htmlFor="confirm-password">Confirmar Senha</label>
 
@@ -119,9 +122,9 @@ export default function Form() {
             }
           })}
           />
-          {errors.password_confirmation && (
-            <p className="text-xs text-red-400 mt-1">{errors.password_confirmation?.message as string}</p>
-          )}
+          <p className="text-xs text-red-400 mt-1">
+            <ErrorMessage errors={errors} name="password_confirmation" />
+          </p>
 
           <span className="absolute right-3 top-3">
           <button type='button' onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
@@ -138,6 +141,7 @@ export default function Form() {
           </span>
         </div>
       </div>
+
       <div className="mb-4">
         <label htmlFor="phone">Telefone Celular</label>
 
@@ -150,11 +154,11 @@ export default function Form() {
         })}
         />
 
-        {errors.phone && (
-          <p className="text-xs text-red-400 mt-1">{errors.phone?.message as string}</p>
-        )}
-
+        <p className="text-xs text-red-400 mt-1">
+            <ErrorMessage errors={errors} name="phone" />
+        </p>
       </div>
+
       <div className="mb-4">
         <label htmlFor="cpf">CPF</label>
         <input type="text" id="cpf" {...registerWithMask('cpf', 'cpf', {
@@ -166,11 +170,11 @@ export default function Form() {
         })}
         />
 
-        {errors.cpf && (
-          <p className="text-xs text-red-400 mt-1">{errors.cpf?.message as string}</p>
-        )}
-
+        <p className="text-xs text-red-400 mt-1">
+          <ErrorMessage errors={errors} name="cpf" />
+        </p>
       </div>
+
       <div className="mb-4">
         <label htmlFor="cep">CEP</label>
         <input type="text" id="cep"
@@ -184,9 +188,9 @@ export default function Form() {
         })}
         />
 
-        {errors.zipcode && (
-          <p className="text-xs text-red-400 mt-1">{errors.zipcode?.message as string}</p>
-        )}
+        <p className="text-xs text-red-400 mt-1">
+          <ErrorMessage errors={errors} name="zipcode" />
+        </p>
 
       </div>
       <div className="mb-4">
@@ -206,10 +210,9 @@ export default function Form() {
           })}
         />
 
-        {errors.address && (
-          <p className="text-xs text-red-400 mt-1">{errors.address?.message as string}</p>
-        )}
-
+        <p className="text-xs text-red-400 mt-1">
+            <ErrorMessage errors={errors} name="address" />
+        </p>
       </div>
 
       <div className="mb-4">
@@ -222,6 +225,7 @@ export default function Form() {
           value={address.city}
         />
       </div>
+
       {/* terms and conditions input */}
       <div className="mb-4">
         <input type="checkbox" id="terms" className="mr-2 accent-slate-500" 
@@ -229,9 +233,10 @@ export default function Form() {
           required: 'Os termos e condições devem ser aceitos'
         })}
         />
-        {errors.terms && (
-          <p className="text-xs text-red-400 mt-1">{errors.terms?.message as string}</p>
-        )}
+
+          <p className="text-xs text-red-400 mt-1">
+            <ErrorMessage errors={errors} name="terms" />
+          </p>
 
         <label
           className="text-sm  font-light text-slate-500 mb-1 inline"
